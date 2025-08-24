@@ -21,10 +21,4 @@ export class Synonym {
 
   }
 
-  // click(): void {
-
-  //   console.log('click in synonym ' + JSON.stringify(this.synonym));
-
-  // }
-
 }

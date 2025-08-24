@@ -31,12 +31,15 @@
 
                 <br />
 
-                <div id="synonym-list">
+                <div id="synonym-list" #synonymList>
 
                     @for(synonym of this.synonyms; track synonym){
                     <app-synonym [synonym]="synonym" (synonymClick)="replaceWordWithSynonym($event)">
                     </app-synonym>
                     }
+
+                    @if(synonyms && synonyms.length < 1 ){ <p style="text-align: center;">NO RESULT</p>
+                        }
 
                 </div>
 

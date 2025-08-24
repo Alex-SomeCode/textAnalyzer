@@ -3,13 +3,12 @@ import { TextApiService } from '../../services/text-api-service';
 import { DatamuseSynonymWord } from '../../models/DatamuseSynonym';
 import { Word } from '../../models/Word';
 import { Synonym } from '../synonym/synonym';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-text-analyzer',
   templateUrl: './text-analyzer.html',
   styleUrl: './text-analyzer.css',
-  imports: [Synonym, CommonModule],
+  imports: [Synonym],
 
 })
 
@@ -96,6 +95,12 @@ export class TextAnalyzer {
 
   }
 
+  hasNoSynonym(): boolean {
+
+    return this.synonyms?.length == 0 ? true : false
+
+  }
+
   copyText() {
     let copyText = this.myTextareaRef.nativeElement.value
     navigator.clipboard.writeText(copyText)
@@ -104,50 +109,5 @@ export class TextAnalyzer {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // saveSelection() {
-  //   // document.querySelector('app-text-analyzer')?.querySelector('#input').
-  // }
-
-
-
-  // replaceWord() { }
-
-
-
 }
 
-
-
-// @HostListener('#input:mouseup', ['$event'])
-// onTextSelection(event: MouseEvent) {
-//   const selection = window.getSelection();
-//   const selected = selection?.toString().trim() || '';
-//   // Якщо виділений текст відрізняється від попереднього, оновлюємо стан
-//   if (selected !== this.selectedText()) {
-//     this.selectedText.set(selected);
-//     // Очищуємо результати та помилку, якщо щось виділено
-//     if (selected) {
-//       this.searchSynonyms(this.selectedText)
-//       this.error.set(null);
-//     }
-//   }
-// }
