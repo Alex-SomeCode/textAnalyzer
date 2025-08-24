@@ -15,7 +15,8 @@
 
                 <br />
 
-                <textarea (mouseup)="selectText()" (input)="onInput($event)" #myTextarea></textarea>
+                <textarea placeholder="Englih input" (mouseup)="selectText()" (input)="onInput($event)"
+                    #myTextarea></textarea>
 
 
                 <div class=" buttons-wrapper">
@@ -38,9 +39,8 @@
                     </app-synonym>
                     }
 
-                    @if(synonyms && synonyms.length < 1 ){
-                    <p style="text-align: center;">NO RESULT</p>
-                    }
+                    @if(synonyms && synonyms.length < 1 ){ <p style="text-align: center;">NO RESULT</p>
+                        }
 
                 </div>
 
