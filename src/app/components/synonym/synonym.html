@@ -1,6 +1,13 @@
 <p (click)="onSynonymClick()">
-    
+
+
+    @if(!synonym.score){
+    {{synonym.word}}
+    }@else{
     {{synonym.word}} -
     {{synonym.score}}
+    }
+
+
 
 </p>
