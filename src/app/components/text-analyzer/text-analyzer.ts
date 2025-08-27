@@ -75,6 +75,8 @@ export class TextAnalyzer {
       )
       .trim();
 
+    if (!this.selectedText.value) return;
+
     this.selectedText.indexStart =
       this.myTextareaRef.nativeElement.selectionStart;
 
