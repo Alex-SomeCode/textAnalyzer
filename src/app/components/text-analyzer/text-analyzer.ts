@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { TextApiService } from '../../services/text-api-service';
 import { DatamuseSynonymWord } from '../../models/DatamuseSynonym';
-import { Word } from '../../models/Word';
+import { SelectedWord } from '../../models/SelectedWord';
 import { Synonym } from '../synonym/synonym';
 
 @Component({
@@ -21,8 +21,7 @@ export class TextAnalyzer {
   template: RegExp = /\b\w+\b/g;
   synonyms?: DatamuseSynonymWord[];
 
-  // selectedText: Word = new Word('', 0, 0)
-  selectedText: Word = {
+  selectedText: SelectedWord = {
     value: '',
     indexStart: 0,
     indexEnd: 0,
