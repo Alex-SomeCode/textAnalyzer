@@ -27,6 +27,7 @@ export class TextAnalyzer {
     indexStart: 0,
     indexEnd: 0,
     remove: () => {
+      this.selectedText.value = '';
       this.selectedText.indexStart = 0;
       this.selectedText.indexEnd = 0;
     },
