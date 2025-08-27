@@ -1,4 +1,4 @@
 export interface DatamuseSynonymWord {
-    word: string,
-    score?: number
+  word: string;
+  score?: number;
 }

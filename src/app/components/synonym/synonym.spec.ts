@@ -8,9 +8,8 @@ describe('Synonym', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Synonym]
-    })
-    .compileComponents();
+      imports: [Synonym],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Synonym);
     component = fixture.componentInstance;

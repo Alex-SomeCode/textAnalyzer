@@ -1,13 +1,9 @@
-<p (click)="onSynonymClick()">
-
-
-    @if(!synonym.score){
-    {{synonym.word}}
-    }@else{
-    {{synonym.word}} <br/> score:
-    {{synonym.score}}
-    }
-
-
-
+<p routerLink="test" (click)="onSynonymClick()">
+  @if(!synonym.score){
+  {{ synonym.word }}
+  }@else{
+  {{ synonym.word }} <br />
+  score:
+  {{ synonym.score }}
+  }
 </p>

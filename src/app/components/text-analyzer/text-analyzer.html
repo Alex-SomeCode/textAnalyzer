@@ -1,53 +1,45 @@
 <div class="main-wrapper">
+  <fieldset>
+    <legend>Text analyzer</legend>
 
-    <fieldset>
-
-        <legend>Text analyzer</legend>
-
-        <div class="flex-wrapper">
-
-            <div class="flex-container" id="input">
-
-                <div>
-                    Symbols: <span #mySymbols>0</span>;
-                    words : <span #myWords>0</span>;
-                </div>
-
-                <br />
-
-                <textarea placeholder="Englih input" (mouseup)="selectText()" (input)="onInput($event)"
-                    #myTextarea></textarea>
-
-
-                <div class=" buttons-wrapper">
-                    <button (click)="searchSynonyms()">search synonyms</button>
-                    <button (click)="copyText()">copy text</button>
-                </div>
-
-            </div>
-
-            <div class="flex-container">
-
-                <div style="text-align: center;">Synonyms result:</div>
-
-                <br />
-
-                <div id="synonym-list" #synonymList>
-
-                    @for(synonym of this.synonyms; track synonym){
-                    <app-synonym [synonym]="synonym" (synonymClick)="replaceWordWithSynonym($event)">
-                    </app-synonym>
-                    }
-
-                    @if(synonyms && synonyms.length < 1 ){ <p style="text-align: center;">NO RESULT</p>
-                        }
-
-                </div>
-
-            </div>
-
+    <div class="flex-wrapper">
+      <div class="flex-container" id="input">
+        <div>
+          Symbols: <span #mySymbols>0</span>; words : <span #myWords>0</span>;
         </div>
 
-    </fieldset>
+        <br />
 
+        <textarea
+          placeholder="Englih input"
+          (mouseup)="selectText()"
+          (input)="onInput($event)"
+          #myTextarea
+        ></textarea>
+
+        <div class="buttons-wrapper">
+          <button (click)="searchSynonyms()">search synonyms</button>
+          <button (click)="copyText()">copy text</button>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <div style="text-align: center">Synonyms result:</div>
+
+        <br />
+
+        <div id="synonym-list" #synonymList>
+          @for(synonym of this.synonyms; track synonym){
+          <app-synonym
+            [synonym]="synonym"
+            (synonymClick)="replaceWordWithSynonym($event)"
+          >
+          </app-synonym>
+          } @if(synonyms && synonyms.length < 1 ){
+          <p style="text-align: center">NO RESULT</p>
+          }
+        </div>
+      </div>
+    </div>
+  </fieldset>
 </div>
