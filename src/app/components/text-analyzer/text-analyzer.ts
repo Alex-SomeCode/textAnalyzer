@@ -1,4 +1,11 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  signal,
+  computed,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { TextApiService } from '../../services/text-api-service';
 import { DatamuseSynonymWord } from '../../models/DatamuseSynonym';
 import { SelectedWord } from '../../models/SelectedWord';
@@ -8,16 +15,14 @@ import { Synonym } from '../synonym/synonym';
   selector: 'app-text-analyzer',
   templateUrl: './text-analyzer.html',
   styleUrl: './text-analyzer.css',
-  imports: [Synonym],
+  imports: [Synonym, FormsModule],
 })
 export class TextAnalyzer {
   @ViewChild('myTextarea') myTextareaRef!: ElementRef;
-  @ViewChild('mySymbols') mySymbolsRef!: ElementRef;
-  @ViewChild('myWords') myWordsRef!: ElementRef;
 
-  symbols: number = 0;
-  words: number = 0;
-  text: string = '';
+  text = signal('');
+  symbols = computed(() => this.text().length);
+  words = computed(() => this.text().split(/\w+/).length - 1);
   template: RegExp = /\b\w+\b/g;
   synonyms?: DatamuseSynonymWord[];
 
@@ -34,30 +39,21 @@ export class TextAnalyzer {
 
   constructor(private apiSevice: TextApiService) {}
 
-  onInput(event: Event) {
-    this.text = (event.target as HTMLInputElement).value;
-
-    this.symbols = (event.target as HTMLInputElement).value.length;
-
-    this.mySymbolsRef.nativeElement.textContent = this.symbols;
-
-    this.myWordsRef.nativeElement.textContent =
-      this.text.split(/\w+/).length - 1;
-  }
-
   replaceWordWithSynonym(synonym: string) {
     if (!this.selectedText.value) return;
 
+    console.log(this.selectedText.value);
+
     this.myTextareaRef.nativeElement.value = this.text;
 
-    let firstPart = this.text.slice(0, this.selectedText.indexStart);
+    let firstPart = this.text().slice(0, this.selectedText.indexStart);
 
-    let secondPart = this.text.slice(this.selectedText.indexEnd).trim();
+    let secondPart = this.text().slice(this.selectedText.indexEnd).trim();
 
     console.log(firstPart);
     console.log(secondPart);
 
-    this.text = firstPart + synonym + ' ' + secondPart;
+    this.text.set(firstPart + synonym + ' ' + secondPart);
 
     (firstPart = ''), (secondPart = '');
 
@@ -94,7 +90,7 @@ export class TextAnalyzer {
     });
   }
 
-  hasNoSynonym(): boolean {
+  hasNoSynonyms(): boolean {
     return this.synonyms?.length == 0 ? true : false;
   }
 

@@ -5,7 +5,10 @@
     <div class="flex-wrapper">
       <div class="flex-container" id="input">
         <div>
-          Symbols: <span #mySymbols>0</span>; words : <span #myWords>0</span>;
+          Symbols:
+          <span #mySymbols>{{ symbols() }}</span
+          >; words : <span #myWords>{{ words() }}</span
+          >;
         </div>
 
         <br />
@@ -13,7 +16,7 @@
         <textarea
           placeholder="Englih input"
           (mouseup)="selectText()"
-          (input)="onInput($event)"
+          [(ngModel)]="text"
           #myTextarea
         ></textarea>
 
@@ -35,7 +38,7 @@
             (synonymClick)="replaceWordWithSynonym($event)"
           >
           </app-synonym>
-          } @if(synonyms && synonyms.length < 1 ){
+          } @if(hasNoSynonyms()){
           <p style="text-align: center">NO RESULT</p>
           }
         </div>
